@@ -27,8 +27,8 @@ const steps = [
 const Process = () => (
     <section className="process-section" aria-labelledby="process-title">
         <div className="process-heading">
-            <h2 id="process-title">Process</h2>
-            <p>Simple, relaxed, and thoughtfully guided</p>
+            <p className="process-eyebrow">Process</p>
+            <h2 id="process-title" className="section-title">Simple, relaxed, and thoughtfully guided</h2>
         </div>
 
         <ol className="process-steps">

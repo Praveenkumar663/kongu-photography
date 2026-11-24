@@ -23,7 +23,7 @@ const Testimonials = () => (
     <section className="testimonials-section" aria-labelledby="testimonials-title">
         <header className="testimonials-heading">
             <p className="testimonials-eyebrow">Kind Words</p>
-            <h2 id="testimonials-title">Stories from the heart</h2>
+            <h2 id="testimonials-title" className="section-title">Stories from the heart</h2>
         </header>
 
         <div className="testimonials-grid">

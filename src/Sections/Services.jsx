@@ -20,7 +20,7 @@ const Services = () => {
 
                 <h4>Services</h4>
 
-                <h3>
+                <h3 className="section-title">
                     Tailored to
                     <span> your story.</span>
                 </h3>

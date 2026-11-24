@@ -11,7 +11,8 @@ const initialForm = {
     website: "",
 };
 
-const OWNER_EMAIL = "praveenkumar06062003@gmail.com";
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+const WEB3FORMS_ACCESS_KEY = "0d38119a-b2ef-4818-aff3-84c948b17de3";
 
 const Contact = () => {
     const [form, setForm] = useState(initialForm);
@@ -28,6 +29,9 @@ const Contact = () => {
     const submitInquiry = async (event) => {
         event.preventDefault();
         if (status === "loading") return;
+
+        const formElement = event.currentTarget;
+        const formData = new FormData(formElement);
 
         const requiredFields = [
             ["name", "Please enter your name."],
@@ -76,46 +80,54 @@ const Contact = () => {
             return;
         }
 
-        if (form.website) {
+        if (String(formData.get("website") || "").trim()) {
             setStatus("idle");
             return;
         }
 
         setStatus("loading");
         setError("");
+        formData.append("access_key", WEB3FORMS_ACCESS_KEY);
 
-        const emailBody = [
-            `Name: ${form.name.trim()}`,
-            `Email: ${form.email.trim()}`,
-            `Phone: ${form.phone.trim()}`,
-            `Session Type: ${form.sessionType}`,
-            `Preferred Date: ${form.preferredDate}`,
-            "",
-            "Message:",
-            form.message.trim(),
-        ].join("\n");
+        try {
+            const response = await fetch(WEB3FORMS_ENDPOINT, {
+                method: "POST",
+                body: formData,
+            });
+            const result = await response.json().catch(() => null);
 
-        const mailtoUrl = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(`Photography inquiry from ${form.name.trim()}`)}&body=${encodeURIComponent(emailBody)}`;
+            if (!response.ok || result?.success !== true) {
+                throw new Error(result?.message || "We couldn't send your inquiry. Please try again.");
+            }
 
-        setForm(initialForm);
-        setStatus("success");
-        setPopup({
-            type: "success",
-            message: "Email draft opened successfully! Please send it from your email app.",
-        });
-        window.location.href = mailtoUrl;
+            setForm(initialForm);
+            formElement.reset();
+            setStatus("success");
+            setPopup({
+                type: "success",
+                message: "Your inquiry has been sent successfully. I’ll be in touch within 24 hours.",
+            });
+        } catch (submissionError) {
+            const message = submissionError instanceof TypeError
+                ? "A network error prevented your inquiry from being sent. Check your connection and try again."
+                : submissionError.message;
+
+            setError(message);
+            setStatus("error");
+            setPopup({ type: "error", message });
+        }
     };
 
     return (
         <section className="contact-section" aria-labelledby="contact-form-title">
             <div className="contact-layout">
                 <div className="contact-form-card">
-                    <h2 id="contact-form-title" className="contact-form-title">Let’s Start a Conversation</h2>
+                    <h2 id="contact-form-title" className="contact-form-title section-title">Let’s Start a Conversation</h2>
                     {status === "success" ? (
                         <div className="contact-success" role="status">
                             <span aria-hidden="true">✦</span>
                             <h3>Your story starts here.</h3>
-                            <p>Thank you for reaching out. Please send the opened email draft, and I’ll be in touch within 24 hours.</p>
+                            <p>Thank you for reaching out. I’ll be in touch within 24 hours.</p>
                             <button type="button" className="contact-reset" onClick={() => setStatus("idle")}>Send another inquiry</button>
                         </div>
                     ) : (
@@ -166,7 +178,7 @@ const Contact = () => {
                 </div>
 
                 <aside className="contact-details">
-                    <h2>I’d love to hear from you</h2>
+                    <h2 className="section-title">I’d love to hear from you</h2>
                     <p className="contact-intro">Whether you’re planning an intimate elopement or a grand celebration, I’m here to help you preserve those fleeting moments forever. Let’s create something beautiful together.</p>
                     <div className="contact-divider" />
                     <ul>

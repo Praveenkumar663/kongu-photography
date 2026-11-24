@@ -1,0 +1,32 @@
+.about_section .text-section h2.section-title,
+.portfolio-section .portfolio-heading h3.section-title,
+.service-section .services-headings h3.section-title,
+.process-section .process-heading h2.section-title,
+.testimonials-section .testimonials-heading h2.section-title,
+.contact-section .contact-form-card h2.section-title,
+.contact-section .contact-details h2.section-title {
+  margin-top: 0;
+  color: #211c18;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.9rem, 2.6vw, 2.35rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.about_section .text-section h2.section-title span,
+.portfolio-section .portfolio-heading h3.section-title span,
+.service-section .services-headings h3.section-title span,
+.process-section .process-heading h2.section-title span,
+.testimonials-section .testimonials-heading h2.section-title span,
+.contact-section .contact-form-card h2.section-title span,
+.contact-section .contact-details h2.section-title span {
+  color: #b28b4d;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.contact-section .contact-form-card h2.section-title {
+  max-width: none;
+}

@@ -39,7 +39,7 @@ const Portfolio = () => {
             <div className="portfolio-heading">
                 <h4>PORTFOLIO</h4>
 
-                <h3>
+                <h3 className="section-title">
                     Stories told through
                     <span> the images.</span>
                 </h3>

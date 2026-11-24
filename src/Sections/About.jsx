@@ -12,7 +12,7 @@ const About = () => {
         <img src={marriage} alt="no-img" loading="lazy" decoding="async" />
       </div>
       <div className="col-sm-12 col-md-6 col-lg-7  text-section">
-        <h2>
+        <h2 className="section-title">
           More than photographs  <br />
 - memories that   <br /> stay with you
         </h2>
