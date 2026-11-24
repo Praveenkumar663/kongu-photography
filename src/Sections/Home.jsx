@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import heroVideo from "../assets/video/istockphoto-1430926947-640_adpp_is.mp4";
 import marriage from "../assets/marriage.jpg";
 import featuredMarriage from "../assets/marriage-featured.jpg";
-
+import photographer from "../assets/images/photographer.avif"
 import "../assets/styles/home.css";
 
 const featuredImages = [marriage, featuredMarriage];
@@ -112,7 +112,7 @@ const Home = () => {
                     <div className="gallery-small">
 
                         <img
-                            src={marriage}
+                            src={photographer}
                             alt="Photography"
                         />
 
