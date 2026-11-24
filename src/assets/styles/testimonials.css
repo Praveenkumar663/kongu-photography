@@ -1,0 +1,123 @@
+.testimonials-section {
+    width: 100%;
+    padding: 6.5rem clamp(1.25rem, 6vw, 6rem) 7rem;
+    background: #f8f4ee;
+    color: #241c17;
+}
+
+.testimonials-heading {
+    margin: 0 auto 3.5rem;
+    text-align: center;
+}
+
+.testimonials-eyebrow {
+    margin: 0 0 0.9rem;
+    color: #8a6d46;
+    font-family: Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.testimonials-heading h2 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.3rem, 4.5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.12;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    position: relative;
+    display: flex;
+    min-height: 330px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 2rem 1.8rem;
+    border: 1px solid #e8dfd4;
+    background: rgba(255, 253, 250, 0.82);
+}
+
+.testimonial-quote {
+    height: 3.2rem;
+    color: #c3a36c;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 5rem;
+    line-height: 1;
+}
+
+.testimonial-stars {
+    margin: 0.35rem 0 1.3rem;
+    color: #b28b4d;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+}
+
+.testimonial-card blockquote {
+    margin: 0 0 2rem;
+    color: #493d34;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.2rem;
+    line-height: 1.65;
+}
+
+.testimonial-credit {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-top: auto;
+}
+
+.testimonial-client {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+}
+
+.testimonial-category {
+    color: #8a6d46;
+    font-family: Arial, sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+}
+
+@media (max-width: 900px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .testimonial-card:last-child {
+        grid-column: 1 / -1;
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 600px) {
+    .testimonials-section {
+        padding: 4.75rem 1.1rem 5rem;
+    }
+
+    .testimonials-heading {
+        margin-bottom: 2.5rem;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .testimonial-card,
+    .testimonial-card:last-child {
+        min-height: 0;
+        grid-column: auto;
+        padding: 1.65rem 1.5rem;
+    }
+}

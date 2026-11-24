@@ -1,0 +1,915 @@
+.service-section {
+
+    width: 100%;
+
+    padding: 6rem 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf5 0%,
+            #f8f3ec 50%,
+            #fffaf5 100%
+        );
+
+    overflow: hidden;
+
+
+    /* ========================================= */
+    /* SECTION HEADING */
+    /* ========================================= */
+
+    .services-headings {
+
+        max-width: 850px;
+
+        margin: 0 auto 4.5rem;
+
+        padding: 0 2rem;
+
+        text-align: center;
+
+
+        h4 {
+
+            margin-bottom: 0.8rem;
+
+            font-size: 0.75rem;
+
+            letter-spacing: 5px;
+
+            font-weight: 600;
+
+            color: #8a6d46;
+
+            text-transform: uppercase;
+        }
+
+
+        h3 {
+
+            margin: 0;
+
+            color: #151515;
+
+            font-size: clamp(
+                2.2rem,
+                4vw,
+                3.8rem
+            );
+
+            line-height: 1.15;
+
+            font-weight: 500;
+
+
+            span {
+
+                color: #d4af37;
+
+                font-style: italic;
+
+                font-weight: 400;
+            }
+        }
+
+
+        p {
+
+            max-width: 600px;
+
+            margin: 1.3rem auto 0;
+
+            color: #756b61;
+
+            font-size: 0.95rem;
+
+            line-height: 1.8;
+        }
+    }
+
+
+
+    /* ========================================= */
+    /* SERVICE CONTAINER */
+    /* ========================================= */
+
+    .service-container {
+
+        padding: 0 1rem;
+    }
+
+
+
+    /* ========================================= */
+    /* SERVICE CARD */
+    /* ========================================= */
+
+    .service-card {
+
+        position: relative;
+
+        margin-bottom: 3rem;
+
+        overflow: hidden;
+
+        background: #ffffff;
+
+        border: 1px solid
+            rgba(138, 109, 70, 0.18);
+
+        border-radius: 18px;
+
+        box-shadow:
+            0 12px 35px
+            rgba(60, 45, 30, 0.07);
+
+        transition:
+            transform 0.45s ease,
+            box-shadow 0.45s ease;
+
+
+        &:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 20px 50px
+                rgba(60, 45, 30, 0.12);
+        }
+
+
+        .row {
+
+            margin: 0;
+        }
+    }
+
+
+
+    /* ========================================= */
+    /* IMAGE SECTION */
+    /* ========================================= */
+
+    .image-section {
+
+        height: 300px;
+
+        overflow: hidden;
+
+        padding: 0;
+    }
+
+
+    .image-wrapper {
+
+        position: relative;
+
+        width: 100%;
+
+        height: 300px;
+
+        overflow: hidden;
+
+        background: #222;
+
+
+        img {
+
+            display: block;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            object-position: center 22%;
+
+            transition:
+                transform 0.9s
+                cubic-bezier(
+                    0.2,
+                    0.7,
+                    0.2,
+                    1
+                );
+        }
+
+
+        /* ========================================= */
+        /* IMAGE OVERLAY */
+        /* ========================================= */
+
+        .image-overlay {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0, 0, 0, 0.03),
+                    rgba(0, 0, 0, 0.35)
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* ========================================= */
+        /* SERVICE NUMBER */
+        /* ========================================= */
+
+        .service-number {
+
+            position: absolute;
+
+            top: 18px;
+
+            left: 18px;
+
+            z-index: 2;
+
+            width: 40px;
+
+            height: 40px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border: 1px solid
+                rgba(255, 255, 255, 0.7);
+
+            border-radius: 50%;
+
+            color: #ffffff;
+
+            font-size: 0.6rem;
+
+            letter-spacing: 2px;
+
+            background:
+                rgba(0, 0, 0, 0.15);
+
+            backdrop-filter: blur(5px);
+        }
+
+
+        /* ========================================= */
+        /* IMAGE LABEL */
+        /* ========================================= */
+
+        .image-label {
+
+            position: absolute;
+
+            right: 18px;
+
+            bottom: 18px;
+
+            z-index: 2;
+
+            color: #ffffff;
+
+            font-size: 0.58rem;
+
+            letter-spacing: 3px;
+
+            font-weight: 600;
+        }
+
+
+        /* ========================================= */
+        /* INNER PHOTO FRAME */
+        /* ========================================= */
+
+        &::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 14px;
+
+            border: 1px solid
+                rgba(255, 255, 255, 0.35);
+
+            pointer-events: none;
+
+            transition:
+                inset 0.45s ease,
+                border-color 0.45s ease;
+        }
+    }
+
+
+
+    /* ========================================= */
+    /* IMAGE HOVER */
+    /* ========================================= */
+
+    .service-card:hover {
+
+        .image-wrapper {
+
+            img {
+
+                transform: scale(1.06);
+            }
+
+
+            &::after {
+
+                inset: 19px;
+
+                border-color:
+                    rgba(212, 175, 55, 0.8);
+            }
+        }
+    }
+
+
+
+    /* ========================================= */
+    /* TEXT SECTION */
+    /* ========================================= */
+
+    .text-section {
+
+        display: flex;
+
+        align-items: center;
+
+        padding: 0;
+
+        background:
+            rgba(255, 255, 255, 0.9);
+    }
+
+
+    .service-content {
+
+        width: 100%;
+
+        padding: 2.8rem 3.5rem;
+    }
+
+
+
+    /* ========================================= */
+    /* CATEGORY */
+    /* ========================================= */
+
+    .service-category {
+
+        display: block;
+
+        margin-bottom: 0.7rem;
+
+        color: #8a6d46;
+
+        font-size: 0.62rem;
+
+        font-weight: 600;
+
+        letter-spacing: 3px;
+
+        text-transform: uppercase;
+    }
+
+
+
+    /* ========================================= */
+    /* TITLE */
+    /* ========================================= */
+
+    .service-content h4 {
+
+        margin: 0 0 1rem;
+
+        color: #151515;
+
+        font-size: clamp(
+            1.6rem,
+            2.5vw,
+            2.15rem
+        );
+
+        line-height: 1.2;
+
+        font-weight: 500;
+    }
+
+
+
+    /* ========================================= */
+    /* DESCRIPTION */
+    /* ========================================= */
+
+    .service-content p {
+
+        margin-bottom: 1.3rem;
+
+        color: #756b61;
+
+        font-size: 0.9rem;
+
+        line-height: 1.75;
+    }
+
+
+
+    /* ========================================= */
+    /* SERVICE LIST */
+    /* ========================================= */
+
+    .service-content ul {
+
+        padding: 0;
+
+        margin: 0 0 1.5rem;
+
+        list-style: none;
+    }
+
+
+    .service-content li {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        margin-bottom: 0.65rem;
+
+        color: #4d463f;
+
+        font-size: 0.85rem;
+    }
+
+
+    .service-content li span {
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        width: 24px;
+
+        height: 24px;
+
+        flex-shrink: 0;
+
+        border: 1px solid
+            rgba(212, 175, 55, 0.55);
+
+        border-radius: 50%;
+
+        color: #8a6d46;
+
+        font-size: 0.52rem;
+
+        letter-spacing: 1px;
+    }
+
+
+
+    /* ========================================= */
+    /* EXPLORE BUTTON */
+    /* ========================================= */
+
+    .service-link {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        padding: 0;
+
+        border: none;
+
+        background: transparent;
+
+        color: #8a6d46;
+
+        font-size: 0.65rem;
+
+        font-weight: 600;
+
+        letter-spacing: 2px;
+
+        text-transform: uppercase;
+
+        cursor: pointer;
+
+        transition:
+            color 0.3s ease,
+            gap 0.3s ease;
+
+
+        span {
+
+            color: #d4af37;
+
+            font-size: 1rem;
+
+            transition:
+                transform 0.3s ease;
+        }
+
+
+        &:hover {
+
+            color: #d4af37;
+
+            gap: 17px;
+
+
+            span {
+
+                transform: translateX(4px);
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .service-section .service-card .row {
+        align-items: stretch;
+    }
+
+    .service-section .image-section {
+        display: flex;
+        height: auto;
+        min-height: 400px;
+    }
+
+    .service-section .image-wrapper {
+        flex: 1;
+        height: auto;
+        min-height: 400px;
+    }
+}
+
+
+/* ================================================= */
+/* TABLET */
+/* ================================================= */
+
+@media (max-width: 991px) {
+
+    .service-section {
+
+        padding: 5rem 0;
+
+
+        .services-headings {
+
+            margin-bottom: 3.5rem;
+        }
+
+
+        /* REDUCED IMAGE HEIGHT */
+
+        .image-section {
+
+            height: 260px;
+        }
+
+
+        .image-wrapper {
+
+            height: 260px;
+        }
+
+
+        .service-content {
+
+            padding: 2.3rem 2.5rem;
+        }
+
+
+        .service-content h4 {
+
+            font-size: 1.8rem;
+        }
+
+
+        .service-content p {
+
+            font-size: 0.85rem;
+        }
+
+
+        .service-content li {
+
+            font-size: 0.8rem;
+        }
+    }
+}
+
+
+
+/* ================================================= */
+/* MOBILE */
+/* ================================================= */
+
+@media (max-width: 767px) {
+
+    .service-section {
+
+        padding: 4.5rem 0;
+
+
+        /* ----------------------------------------- */
+        /* SECTION HEADING */
+        /* ----------------------------------------- */
+
+        .services-headings {
+
+            margin-bottom: 2.8rem;
+
+            padding: 0 1.5rem;
+
+
+            h4 {
+
+                font-size: 0.68rem;
+
+                letter-spacing: 4px;
+            }
+
+
+            h3 {
+
+                font-size: 2.1rem;
+            }
+
+
+            p {
+
+                margin-top: 1rem;
+
+                font-size: 0.85rem;
+
+                line-height: 1.7;
+            }
+        }
+
+
+        /* ----------------------------------------- */
+        /* CONTAINER */
+        /* ----------------------------------------- */
+
+        .service-container {
+
+            padding: 0 1rem;
+        }
+
+
+        /* ----------------------------------------- */
+        /* CARD */
+        /* ----------------------------------------- */
+
+        .service-card {
+
+            margin-bottom: 2rem;
+
+            border-radius: 14px;
+
+            transform: none;
+
+
+            &:hover {
+
+                transform: none;
+            }
+
+
+            .row {
+
+                display: flex;
+
+                flex-direction: column;
+            }
+        }
+
+
+
+        /* ----------------------------------------- */
+        /* IMPORTANT:
+           IMAGE ALWAYS FIRST ON MOBILE
+        */
+        /* ----------------------------------------- */
+
+        .service-card .image-section {
+
+            order: 1;
+
+            width: 100%;
+
+            height: 230px;
+
+            flex: none;
+        }
+
+
+        .service-card .text-section {
+
+            order: 2;
+
+            width: 100%;
+
+            min-height: auto;
+        }
+
+
+        /* ----------------------------------------- */
+        /* IMAGE */
+        /* ----------------------------------------- */
+
+        .image-wrapper {
+
+            width: 100%;
+
+            height: 230px;
+
+
+            &::after {
+
+                inset: 11px;
+            }
+
+
+            .service-number {
+
+                top: 15px;
+
+                left: 15px;
+
+                width: 36px;
+
+                height: 36px;
+
+                font-size: 0.55rem;
+            }
+
+
+            .image-label {
+
+                right: 15px;
+
+                bottom: 15px;
+
+                font-size: 0.52rem;
+
+                letter-spacing: 2.5px;
+            }
+        }
+
+
+        /* ----------------------------------------- */
+        /* TEXT */
+        /* ----------------------------------------- */
+
+        .service-content {
+
+            padding: 2rem 1.7rem;
+        }
+
+
+        .service-category {
+
+            margin-bottom: 0.6rem;
+
+            font-size: 0.58rem;
+
+            letter-spacing: 2.5px;
+        }
+
+
+        .service-content h4 {
+
+            margin-bottom: 0.9rem;
+
+            font-size: 1.65rem;
+        }
+
+
+        .service-content p {
+
+            margin-bottom: 1.2rem;
+
+            font-size: 0.84rem;
+
+            line-height: 1.7;
+        }
+
+
+        .service-content ul {
+
+            margin-bottom: 1.3rem;
+        }
+
+
+        .service-content li {
+
+            margin-bottom: 0.55rem;
+
+            font-size: 0.78rem;
+        }
+
+
+        .service-content li span {
+
+            width: 22px;
+
+            height: 22px;
+
+            font-size: 0.48rem;
+        }
+
+
+        .service-link {
+
+            font-size: 0.6rem;
+        }
+    }
+}
+
+
+
+/* ================================================= */
+/* SMALL MOBILE */
+/* ================================================= */
+
+@media (max-width: 400px) {
+
+    .service-section {
+
+        padding: 4rem 0;
+
+
+        .services-headings {
+
+            h3 {
+
+                font-size: 1.85rem;
+            }
+        }
+
+
+        .service-container {
+
+            padding: 0 0.8rem;
+        }
+
+
+        /* EVEN SHORTER IMAGE */
+
+        .service-card .image-section {
+
+            height: 210px;
+        }
+
+
+        .image-wrapper {
+
+            height: 210px;
+        }
+
+
+        .service-content {
+
+            padding: 1.8rem 1.4rem;
+        }
+
+
+        .service-content h4 {
+
+            font-size: 1.5rem;
+        }
+
+
+        .service-content p {
+
+            font-size: 0.8rem;
+        }
+
+
+        .service-content li {
+
+            font-size: 0.75rem;
+        }
+    }
+}
