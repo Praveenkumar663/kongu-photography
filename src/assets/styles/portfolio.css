@@ -766,3 +766,184 @@
         font-size: 1.5rem;
     }
 }
+
+/* Premium portfolio lightbox */
+.image-lightbox {
+    padding: max(1rem, env(safe-area-inset-top, 0px)) max(1rem, env(safe-area-inset-right, 0px)) max(1rem, env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
+    background: rgb(3 3 4 / 96%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    animation: lightboxFade 260ms ease both;
+}
+
+.zoomed-image-wrapper {
+    width: min(1100px, 100%);
+    height: min(86vh, 900px);
+    height: min(86dvh, 900px);
+    animation: imageZoom 420ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.zoomed-image-wrapper img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid rgb(212 175 55 / 72%);
+    padding: 5px;
+    background: #090909;
+    box-shadow: 0 24px 90px rgb(0 0 0 / 75%), 0 0 28px rgb(212 175 55 / 14%);
+    animation: imageZoom 420ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.close-button {
+    position: absolute;
+    z-index: 3;
+    top: 12px;
+    right: 12px;
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border: 1px solid rgb(212 175 55 / 52%);
+    border-radius: 50%;
+    background: rgb(18 18 18 / 76%);
+    color: #fff;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    animation: controlAppear 300ms 100ms ease both;
+    transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease;
+}
+
+.close-button:hover {
+    transform: rotate(90deg) scale(1.06);
+    border-color: #d4af37;
+    background: rgb(212 175 55 / 18%);
+}
+
+.close-button:focus-visible,
+.lightbox-nav:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 3px;
+}
+
+.lightbox-nav {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    display: grid;
+    width: 52px;
+    height: 52px;
+    place-items: center;
+    transform: translateY(-50%);
+    border: 1px solid rgb(212 175 55 / 42%);
+    border-radius: 50%;
+    background: rgb(14 14 14 / 76%);
+    color: #fff;
+    font-size: 1.15rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.lightbox-nav:hover {
+    border-color: #d4af37;
+    background: rgb(212 175 55 / 18%);
+    color: #f2d77c;
+}
+
+.lightbox-prev { left: 12px; }
+.lightbox-next { right: 12px; }
+
+.lightbox-counter {
+    position: absolute;
+    right: 0;
+    bottom: 12px;
+    left: 0;
+    color: rgb(255 255 255 / 78%);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-align: center;
+}
+
+.image-lightbox.is-closing {
+    animation: lightboxExit 280ms ease both;
+    pointer-events: none;
+}
+
+.image-lightbox.is-closing .zoomed-image-wrapper,
+.image-lightbox.is-closing .zoomed-image-wrapper img {
+    animation: imageZoomOut 280ms ease both;
+}
+
+.image-lightbox.is-closing .close-button,
+.image-lightbox.is-closing .lightbox-nav {
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.image-lightbox.is-closing .close-button {
+    animation: none;
+}
+
+@keyframes imageZoom {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes imageZoomOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.94); }
+}
+
+@keyframes controlAppear {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes lightboxExit {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@media (max-width: 600px) {
+    .image-lightbox {
+        padding: max(0.75rem, env(safe-area-inset-top, 0px)) max(0.75rem, env(safe-area-inset-right, 0px)) max(0.75rem, env(safe-area-inset-bottom, 0px)) max(0.75rem, env(safe-area-inset-left, 0px));
+    }
+
+    .zoomed-image-wrapper {
+        width: 100%;
+        height: min(82vh, 820px);
+        height: min(82dvh, 820px);
+    }
+
+    .close-button {
+        top: 8px;
+        right: 8px;
+        width: 48px;
+        height: 48px;
+    }
+
+    .lightbox-nav {
+        width: 48px;
+        height: 48px;
+    }
+
+    .lightbox-prev { left: 4px; }
+    .lightbox-next { right: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .image-lightbox,
+    .zoomed-image-wrapper,
+    .zoomed-image-wrapper img,
+    .close-button,
+    .lightbox-nav {
+        animation-duration: 1ms;
+        transition-duration: 1ms;
+    }
+}

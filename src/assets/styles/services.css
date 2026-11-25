@@ -568,6 +568,22 @@
 
 @media (max-width: 991px) {
 
+    /* Keep image and its matching content together in the same order on tablet and mobile. */
+    .service-section .service-card .row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .service-section .service-card .image-section {
+        order: 1;
+        width: 100%;
+    }
+
+    .service-section .service-card .text-section {
+        order: 2;
+        width: 100%;
+    }
+
     .service-section {
 
         padding: 5rem 0;

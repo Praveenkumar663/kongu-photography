@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../assets/styles/portfolio.css";
 
 import image1 from "../assets/marriage.jpg"
@@ -23,15 +23,53 @@ const Portfolio = () => {
         image8,
     ];
 
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedIndex, setSelectedIndex] = useState(null);
+    const [isClosing, setIsClosing] = useState(false);
+    const closeTimer = useRef(null);
 
-    const handleImageClick = (image) => {
-        setSelectedImage(image);
+    const handleImageClick = (index) => {
+        window.clearTimeout(closeTimer.current);
+        setIsClosing(false);
+        setSelectedIndex(index % images.length);
     };
 
     const closeImage = () => {
-        setSelectedImage(null);
+        if (selectedIndex === null || isClosing) return;
+        setIsClosing(true);
+        closeTimer.current = window.setTimeout(() => {
+            setSelectedIndex(null);
+            setIsClosing(false);
+        }, 280);
     };
+
+    const showPreviousImage = () => {
+        setSelectedIndex((index) => (index - 1 + images.length) % images.length);
+    };
+
+    const showNextImage = () => {
+        setSelectedIndex((index) => (index + 1) % images.length);
+    };
+
+    useEffect(() => {
+        if (selectedIndex === null) return undefined;
+
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+
+        const handleKeyDown = (event) => {
+            if (event.key === "Escape") closeImage();
+            if (event.key === "ArrowLeft") showPreviousImage();
+            if (event.key === "ArrowRight") showNextImage();
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [selectedIndex, isClosing]);
+
+    useEffect(() => () => window.clearTimeout(closeTimer.current), []);
 
     return (
         <section className="portfolio-section">
@@ -48,7 +86,7 @@ const Portfolio = () => {
 
             <div
                 className={`images-marques ${
-                    selectedImage ? "marquee-paused" : ""
+                    selectedIndex !== null ? "marquee-paused" : ""
                 }`}
             >
 
@@ -59,27 +97,25 @@ const Portfolio = () => {
 
                         {[...images, ...images].map((image, index) => (
                             <div
-    className="portfolio-image"
-    onClick={() => handleImageClick(image)}
->
-    <img
-        src={image}
-        alt={`Portfolio ${index + 1}`}
-        loading="lazy"
-        decoding="async"
-    />
+                                className="portfolio-image"
+                                key={`row1-${index}`}
+                                onClick={() => handleImageClick(index)}
+                            >
+                                <img
+                                    src={image}
+                                    alt={`Portfolio ${(index % images.length) + 1}`}
+                                    loading="lazy"
+                                    decoding="async"
+                                />
 
-    <span className="photo-number">
-        {String((index % images.length) + 1).padStart(2, "0")}
-    </span>
+                                <span className="photo-number">
+                                    {String((index % images.length) + 1).padStart(2, "0")}
+                                </span>
 
-    <span className="view-photo">
-        View Photo
-    </span>
-
-    <span className="corner corner-top-left"></span>
-    <span className="corner corner-bottom-right"></span>
-</div>
+                                <span className="view-photo">View Photo</span>
+                                <span className="corner corner-top-left"></span>
+                                <span className="corner corner-bottom-right"></span>
+                            </div>
                         ))}
 
                     </div>
@@ -96,7 +132,7 @@ const Portfolio = () => {
                             <div
                                 className="portfolio-image"
                                 key={`row2-${index}`}
-                                onClick={() => handleImageClick(image)}
+                                onClick={() => handleImageClick(index)}
                             >
                                 <img
                                     src={image}
@@ -116,10 +152,13 @@ const Portfolio = () => {
 
             {/* ZOOMED IMAGE */}
 
-            {selectedImage && (
+            {selectedIndex !== null && (
                 <div
-                    className="image-lightbox"
+                    className={`image-lightbox${isClosing ? " is-closing" : ""}`}
                     onClick={closeImage}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Portfolio image preview"
                 >
 
                     <div
@@ -127,18 +166,35 @@ const Portfolio = () => {
                         onClick={(e) => e.stopPropagation()}
                     >
 
+                        <button className="close-button" onClick={closeImage} aria-label="Close image">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
                         <button
-                            className="close-button"
-                            onClick={closeImage}
-                            aria-label="Close image"
+                            className="lightbox-nav lightbox-prev"
+                            onClick={showPreviousImage}
+                            aria-label="Previous image"
                         >
-                            &times;
+                            <i className="bi bi-chevron-left" aria-hidden="true" />
                         </button>
 
                         <img
-                            src={selectedImage}
-                            alt="Selected portfolio"
+                            key={selectedIndex}
+                            src={images[selectedIndex]}
+                            alt={`Portfolio image ${selectedIndex + 1}`}
                         />
+
+                        <button
+                            className="lightbox-nav lightbox-next"
+                            onClick={showNextImage}
+                            aria-label="Next image"
+                        >
+                            <i className="bi bi-chevron-right" aria-hidden="true" />
+                        </button>
+
+                        <span className="lightbox-counter" aria-live="polite">
+                            {String(selectedIndex + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
+                        </span>
 
                     </div>
 
