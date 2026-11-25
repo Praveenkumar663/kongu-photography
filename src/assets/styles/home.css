@@ -567,13 +567,14 @@
 
     .hero-content {
 
-        width: 90%;
+        width: 100%;
+        max-width: 100%;
 
         min-height: auto;
 
         margin-top: 70px;
 
-        padding: 4rem 0 5rem;
+        padding: 4rem 1rem 5rem;
 
         display: flex;
 
@@ -678,13 +679,13 @@
 
     .hero-gallery {
 
-        width: 100vw;
+        width: 100%;
 
         height: clamp(260px, 80vw, 680px);
 
-        max-width: none;
+        max-width: 100%;
 
-        margin-inline: calc(50% - 50vw);
+        margin-inline: 0;
 
         flex: 0 0 auto;
     }
@@ -769,11 +770,12 @@
 
     .hero-content {
 
-        width: 92%;
+        width: 100%;
+        max-width: 100%;
 
         margin-top: 60px;
 
-        padding-top: 3rem;
+        padding: 3rem 0.75rem 5rem;
 
         gap: 2.5rem;
     }

@@ -30,10 +30,10 @@
 
 @media (max-width: 767px) {
   .whatsapp-float {
-    right: calc(12px + env(safe-area-inset-right, 0px));
-    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    width: 52px;
-    height: 52px;
+    right: calc(16px + env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    width: 56px;
+    height: 56px;
     font-size: 1.8rem;
   }
 }
