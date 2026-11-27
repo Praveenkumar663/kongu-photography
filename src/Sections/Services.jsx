@@ -1,4 +1,5 @@
 import React from "react";
+import { motion, useReducedMotion } from "motion/react";
 import "../assets/styles/services.css";
 
 
@@ -9,6 +10,8 @@ import lifestyle from "../assets/images/lifestyle.jpg";
 
 
 const Services = () => {
+    const shouldReduceMotion = useReducedMotion();
+
     return (
         <section className="service-section">
 
@@ -44,7 +47,13 @@ const Services = () => {
                 {/* SERVICE 01 */}
                 {/* ========================= */}
 
-                <div className="service-card">
+                <motion.div
+                    className="service-card"
+                    initial={shouldReduceMotion ? false : { opacity: 0, x: -28 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.18 }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
 
                     <div className="row g-0 align-items-stretch">
 
@@ -125,7 +134,7 @@ const Services = () => {
 
                     </div>
 
-                </div>
+                </motion.div>
 
 
 
@@ -133,7 +142,13 @@ const Services = () => {
                 {/* SERVICE 02 */}
                 {/* ========================= */}
 
-                <div className="service-card reverse">
+                <motion.div
+                    className="service-card reverse"
+                    initial={shouldReduceMotion ? false : { opacity: 0, x: 28 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.18 }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
 
                     <div className="row g-0 align-items-stretch">
 
@@ -214,7 +229,7 @@ const Services = () => {
 
                     </div>
 
-                </div>
+                </motion.div>
 
 
 
@@ -222,7 +237,13 @@ const Services = () => {
                 {/* SERVICE 03 */}
                 {/* ========================= */}
 
-                <div className="service-card">
+                <motion.div
+                    className="service-card"
+                    initial={shouldReduceMotion ? false : { opacity: 0, x: -28 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.18 }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
 
                     <div className="row g-0 align-items-stretch">
 
@@ -303,7 +324,7 @@ const Services = () => {
 
                     </div>
 
-                </div>
+                </motion.div>
 
 
 
@@ -311,7 +332,13 @@ const Services = () => {
                 {/* SERVICE 04 */}
                 {/* ========================= */}
 
-                <div className="service-card reverse">
+                <motion.div
+                    className="service-card reverse"
+                    initial={shouldReduceMotion ? false : { opacity: 0, x: 28 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.18 }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
 
                     <div className="row g-0 align-items-stretch">
 
@@ -391,7 +418,7 @@ const Services = () => {
 
                     </div>
 
-                </div>
+                </motion.div>
 
             </div>
 

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const Navbar = () => {
 
@@ -54,27 +54,27 @@ const Navbar = () => {
                     <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link to="/" className="nav-link" onClick={() => setIsopen(false)}>Home</Link>
+                                <NavLink to="/" end className="nav-link" onClick={() => setIsopen(false)}>Home</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link to="/about" className="nav-link" onClick={() => setIsopen(false)}>About</Link>
+                                <NavLink to="/about" className="nav-link" onClick={() => setIsopen(false)}>About</NavLink>
 
                             </li>
                             <li className="nav-item">
-                                <Link to="/portfolio" className="nav-link" onClick={() => setIsopen(false)}>Portfolio</Link>
+                                <NavLink to="/portfolio" className="nav-link" onClick={() => setIsopen(false)}>Portfolio</NavLink>
 
                             </li>
 
                             <li className="nav-item">
-                                <Link to="/services" className="nav-link" onClick={() => setIsopen(false)}>Services</Link>
+                                <NavLink to="/services" className="nav-link" onClick={() => setIsopen(false)}>Services</NavLink>
 
                             </li>
                             <li className="nav-item">
-                                <Link to="/testimonials" className="nav-link" onClick={() => setIsopen(false)}>Testimonials</Link>
+                                <NavLink to="/testimonials" className="nav-link" onClick={() => setIsopen(false)}>Testimonials</NavLink>
 
                             </li>
                             <li className="nav-item">
-                                <Link to="/contact" className="nav-link" onClick={() => setIsopen(false)}>Contact</Link>
+                                <NavLink to="/contact" className="nav-link" onClick={() => setIsopen(false)}>Contact</NavLink>
 
                             </li>
 

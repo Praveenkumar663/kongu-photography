@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import CircularTextReveal from "../Components/CircularTextReveal";
 import heroVideo from "../assets/video/istockphoto-1430926947-640_adpp_is.mp4";
 import marriage from "../assets/marriage.jpg";
 import featuredMarriage from "../assets/marriage-featured.jpg";
@@ -8,8 +10,33 @@ import "../assets/styles/home.css";
 
 const featuredImages = [marriage, featuredMarriage];
 
+const heroTextVariants = {
+    hidden: {},
+    visible: {
+        transition: { delayChildren: 0.12, staggerChildren: 0.13 },
+    },
+};
+
+const heroItemVariants = {
+    hidden: { opacity: 0, y: 18 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+    },
+};
+
+const MotionLink = motion.create(Link);
+
 const Home = () => {
     const [featuredImageIndex, setFeaturedImageIndex] = useState(0);
+    const heroRef = useRef(null);
+    const shouldReduceMotion = useReducedMotion();
+    const { scrollYProgress } = useScroll({
+        target: heroRef,
+        offset: ["start start", "end start"],
+    });
+    const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 42]);
 
     useEffect(() => {
         const intervalId = window.setInterval(() => {
@@ -21,13 +48,16 @@ const Home = () => {
 
     return (
 
-        <section className="hero">
+        <section className="hero" ref={heroRef}>
 
             {/* =========================
                 BACKGROUND VIDEO
             ========================= */}
 
-            <div className="hero-video">
+            <motion.div
+                className="hero-video"
+                style={shouldReduceMotion ? undefined : { y: backgroundY, scale: 1.04 }}
+            >
 
                 <video
                     src={heroVideo}
@@ -37,7 +67,7 @@ const Home = () => {
                     playsInline
                 />
 
-            </div>
+            </motion.div>
 
 
             {/* =========================
@@ -55,44 +85,64 @@ const Home = () => {
 
                 {/* LEFT SIDE */}
 
-                <div className="hero-text">
+                <motion.div
+                    className="hero-text"
+                    variants={heroTextVariants}
+                    initial={shouldReduceMotion ? false : "hidden"}
+                    animate="visible"
+                >
 
-                    <span className="hero-eyebrow">
+                    <motion.span className="hero-eyebrow" variants={heroItemVariants}>
                         EST. 2014 • COIMBATORE & KARUR
-                    </span>
+                    </motion.span>
 
 
-                    <h1>
+                    <CircularTextReveal as="h1" variants={heroItemVariants}>
                         Timeless
                         <span> Moments.</span>
-                    </h1>
+                    </CircularTextReveal>
 
 
-                    <p>
+                    <motion.p variants={heroItemVariants}>
                         Capturing genuine emotions, beautiful
                         celebrations and unforgettable moments
                         through cinematic photography.
-                    </p>
+                    </motion.p>
 
 
-                    <div className="hero-buttons">
+                    <motion.div className="hero-buttons" variants={heroItemVariants}>
 
-                        <Link className="primary-btn" to="/portfolio">
+                        <MotionLink
+                            className="primary-btn"
+                            to="/portfolio"
+                            whileHover={shouldReduceMotion ? undefined : { scale: 1.035 }}
+                            whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
+                        >
                             View Portfolio
-                        </Link>
+                        </MotionLink>
 
-                        <Link className="secondary-btn" to="/contact">
+                        <MotionLink
+                            className="secondary-btn"
+                            to="/contact"
+                            whileHover={shouldReduceMotion ? undefined : { scale: 1.035 }}
+                            whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
+                        >
                             Book a Session
-                        </Link>
+                        </MotionLink>
 
-                    </div>
+                    </motion.div>
 
-                </div>
+                </motion.div>
 
 
                 {/* RIGHT SIDE */}
 
-                <div className="hero-gallery">
+                <motion.div
+                    className="hero-gallery"
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" }}
+                >
 
                     {/* Large frame */}
 
@@ -123,7 +173,7 @@ const Home = () => {
 
                     <div className="gallery-circle"></div>
 
-                </div>
+                </motion.div>
 
             </div>
 

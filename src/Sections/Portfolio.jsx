@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
+import CircularTextReveal from "../Components/CircularTextReveal";
 import "../assets/styles/portfolio.css";
 
 import image1 from "../assets/marriage.jpg"
@@ -26,6 +28,7 @@ const Portfolio = () => {
     const [isClosing, setIsClosing] = useState(false);
     const closeTimer = useRef(null);
     const isOpen = selectedIndex !== null;
+    const shouldReduceMotion = useReducedMotion();
 
     const handleImageClick = (index) => {
         window.clearTimeout(closeTimer.current);
@@ -82,10 +85,10 @@ const Portfolio = () => {
             <div className="portfolio-heading">
                 <h4>PORTFOLIO</h4>
 
-                <h3 className="section-title">
+                <CircularTextReveal as="h3" className="section-title">
                     Stories told through
                     <span> the images.</span>
-                </h3>
+                </CircularTextReveal>
             </div>
 
 
@@ -101,10 +104,15 @@ const Portfolio = () => {
                     <div className="marquee-track">
 
                         {[...images, ...images].map((image, index) => (
-                            <div
+                            <motion.div
                                 className="portfolio-image"
                                 key={`row1-${index}`}
                                 onClick={() => handleImageClick(index)}
+                                initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                whileHover={shouldReduceMotion ? undefined : { scale: 1.025, y: -8 }}
+                                viewport={{ once: true, amount: 0.1 }}
+                                transition={{ duration: 0.55, delay: shouldReduceMotion ? 0 : (index % images.length) * 0.025, ease: [0.22, 1, 0.36, 1] }}
                             >
                                 <img
                                     src={image}
@@ -120,7 +128,7 @@ const Portfolio = () => {
                                 <span className="view-photo">View Photo</span>
                                 <span className="corner corner-top-left"></span>
                                 <span className="corner corner-bottom-right"></span>
-                            </div>
+                            </motion.div>
                         ))}
 
                     </div>
@@ -134,10 +142,15 @@ const Portfolio = () => {
                     <div className="marquee-track">
 
                         {[...images, ...images].map((image, index) => (
-                            <div
+                            <motion.div
                                 className="portfolio-image"
                                 key={`row2-${index}`}
                                 onClick={() => handleImageClick(index)}
+                                initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                whileHover={shouldReduceMotion ? undefined : { scale: 1.025, y: -8 }}
+                                viewport={{ once: true, amount: 0.1 }}
+                                transition={{ duration: 0.55, delay: shouldReduceMotion ? 0 : (index % images.length) * 0.025, ease: [0.22, 1, 0.36, 1] }}
                             >
                                 <img
                                     src={image}
@@ -145,7 +158,7 @@ const Portfolio = () => {
                                     loading="lazy"
                                     decoding="async"
                                 />
-                            </div>
+                            </motion.div>
                         ))}
 
                     </div>
