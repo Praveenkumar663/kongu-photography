@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "../assets/styles/portfolio.css";
 
 import image1 from "../assets/marriage.jpg"
@@ -10,22 +10,22 @@ import image6 from "../assets/marriage.jpg";
 import image7 from "../assets/marriage.jpg";
 import image8 from "../assets/marriage.jpg";
 
+const images = [
+    image1,
+    image2,
+    image3,
+    image4,
+    image5,
+    image6,
+    image7,
+    image8,
+];
+
 const Portfolio = () => {
-
-    const images = [
-        image1,
-        image2,
-        image3,
-        image4,
-        image5,
-        image6,
-        image7,
-        image8,
-    ];
-
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [isClosing, setIsClosing] = useState(false);
     const closeTimer = useRef(null);
+    const isOpen = selectedIndex !== null;
 
     const handleImageClick = (index) => {
         window.clearTimeout(closeTimer.current);
@@ -33,28 +33,36 @@ const Portfolio = () => {
         setSelectedIndex(index % images.length);
     };
 
-    const closeImage = () => {
+    const closeImage = useCallback(() => {
         if (selectedIndex === null || isClosing) return;
         setIsClosing(true);
         closeTimer.current = window.setTimeout(() => {
             setSelectedIndex(null);
             setIsClosing(false);
         }, 280);
-    };
+    }, [selectedIndex, isClosing]);
 
-    const showPreviousImage = () => {
+    const showPreviousImage = useCallback(() => {
         setSelectedIndex((index) => (index - 1 + images.length) % images.length);
-    };
+    }, []);
 
-    const showNextImage = () => {
+    const showNextImage = useCallback(() => {
         setSelectedIndex((index) => (index + 1) % images.length);
-    };
+    }, []);
 
     useEffect(() => {
-        if (selectedIndex === null) return undefined;
+        if (!isOpen) return undefined;
 
         const previousOverflow = document.body.style.overflow;
         document.body.style.overflow = "hidden";
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [isOpen]);
+
+    useEffect(() => {
+        if (selectedIndex === null) return undefined;
 
         const handleKeyDown = (event) => {
             if (event.key === "Escape") closeImage();
@@ -63,11 +71,8 @@ const Portfolio = () => {
         };
 
         window.addEventListener("keydown", handleKeyDown);
-        return () => {
-            document.body.style.overflow = previousOverflow;
-            window.removeEventListener("keydown", handleKeyDown);
-        };
-    }, [selectedIndex, isClosing]);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [selectedIndex, isClosing, closeImage, showPreviousImage, showNextImage]);
 
     useEffect(() => () => window.clearTimeout(closeTimer.current), []);
 

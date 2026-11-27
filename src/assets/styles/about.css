@@ -29,11 +29,11 @@
 
     padding: 0 4rem;        
         
-        h2{
+        .section-title{
             font-weight: bold;
             letter-spacing: 1px;
             line-height: 2.6rem;
-            color: #d4af37;
+            color: #4a1010;
         }
 
         h4{

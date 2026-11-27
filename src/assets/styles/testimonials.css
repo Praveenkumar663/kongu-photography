@@ -20,12 +20,14 @@
     text-transform: uppercase;
 }
 
+
 .testimonials-heading h2 {
     margin: 0;
     font-family: Georgia, "Times New Roman", serif;
     font-size: clamp(2.3rem, 4.5vw, 3.8rem);
     font-weight: 400;
     line-height: 1.12;
+    color: #4a1010;
 }
 
 .testimonials-grid {

@@ -2,7 +2,7 @@
     width: 100%;
     padding: clamp(4rem, 8vw, 7.5rem) clamp(1.25rem, 6vw, 5rem);
     background: #FAF8F5;
-    color: #171412;
+    color: #4a1010;
 }
 
 .contact-layout {
@@ -28,6 +28,7 @@
     font-family: Georgia, "Times New Roman", serif;
     font-weight: 400;
     line-height: 1.12;
+    color: #4a1010;
 }
 
 .contact-form-card > h2 {

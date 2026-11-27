@@ -40,7 +40,7 @@
 
             font-weight: 600;
 
-            color: #8a6d46;
+            color: #4a1010;
 
             text-transform: uppercase;
         }
@@ -392,7 +392,7 @@
 
         margin: 0 0 1rem;
 
-        color: #151515;
+        color: #4a1010;
 
         font-size: clamp(
             1.6rem,
