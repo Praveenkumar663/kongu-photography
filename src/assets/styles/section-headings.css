@@ -12,7 +12,7 @@
   font-weight: 400;
   letter-spacing: -0.025em;
   line-height: 1.15;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .about_section .text-section h2.section-title span,

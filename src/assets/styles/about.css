@@ -68,7 +68,7 @@
         row-gap: 2rem;
     }
 
-    .about_section .img-section img {
+    .about_section .about .img-section img {
         width: min(100%, 360px);
         height: auto;
     }

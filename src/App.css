@@ -12,19 +12,18 @@ html,
 body,
 #root {
     width: 100%;
+    max-width: 100%;
     min-width: 0;
+}
+
+html,
+body {
+    overflow-x: clip;
 }
 
 body {
     scroll-behavior: smooth;
     font-family: 'Arial', sans-serif;
-}
-
-/* Preserve the existing desktop overflow behavior; mobile sizing is handled by its layout rules. */
-@media (min-width: 768px) {
-    body {
-        overflow-x: clip;
-    }
 }
 
 h1,
